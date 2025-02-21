@@ -69,7 +69,25 @@ def validate_raw_tables(session):
 
 # For local debugging
 if __name__ == "__main__":
-    # Create a local Snowpark session
-    with Session.builder.getOrCreate() as session:
-        load_all_raw_tables(session)
-#        validate_raw_tables(session)
+    from snowflake.snowpark import Session
+
+# Define connection parameters
+connection_parameters = {
+    "account": "tv25286.ca-central-1.aws",
+    "user": "Hishita",  # Replace with your actual username
+    "password": "Universal@12345",  # Replace with your actual password
+    "warehouse": "HOL_WH",  # Update with your warehouse
+    "database": "HOL_DB",  # Update with your database
+    "schema": "ANALYTICS"  # Update with your schema
+}
+
+# Create the Snowflake session
+session = Session.builder.configs(connection_parameters).create()
+
+# Run your data loading functions
+load_all_raw_tables(session)
+
+# Close the session
+session.close()
+
+    
