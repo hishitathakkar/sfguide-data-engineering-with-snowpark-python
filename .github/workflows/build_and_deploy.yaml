@@ -28,10 +28,11 @@ jobs:
 
       - name: Deploy Snowpark apps
         env:
-          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWFLAKE_ACCOUNT }}
-          SNOWFLAKE_USER: ${{ secrets.SNOWFLAKE_USER }}
-          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWFLAKE_PASSWORD }}
-          SNOWFLAKE_ROLE: ${{ secrets.SNOWFLAKE_ROLE }}
-          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWFLAKE_WAREHOUSE }}
-          SNOWFLAKE_DATABASE: ${{ secrets.SNOWFLAKE_DATABASE }}
-        run: python deploy_snowpark_apps.py $GITHUB_WORKSPACE
+          SNOWFLAKE_ACCOUNT: ${{ secrets.SNOWSQL_ACCOUNT }}
+          SNOWFLAKE_USER: ${{ secrets.SNOWSQL_USER }}
+          SNOWFLAKE_PASSWORD: ${{ secrets.SNOWSQL_PWD }}
+          SNOWFLAKE_ROLE: ${{ secrets.SNOWSQL_ROLE }}
+          SNOWFLAKE_WAREHOUSE: ${{ secrets.SNOWSQL_WAREHOUSE }}
+          SNOWFLAKE_DATABASE: ${{ secrets.SNOWSQL_DATABASE }}
+        run: python deploy_snowpark_apps.py $GITHUB_WORKSPACE --database ${{ secrets.SNOWSQL_DATABASE }}
+
